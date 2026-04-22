@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Erro de banco</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="login-page">
+    <main class="login-shell panel stack">
+        <h1 class="page-title">Banco de dados indisponivel</h1>
+        <p class="muted">Verifique se o PostgreSQL esta rodando, se o banco oficina_db foi criado e se as variaveis do arquivo .env estao corretas.</p>
+        <pre>{{ error }}</pre>
+    </main>
+</body>
+</html>

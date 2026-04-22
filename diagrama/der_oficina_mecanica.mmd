@@ -1,0 +1,47 @@
+erDiagram
+    USUARIOS {
+        int id PK
+        varchar nome
+        varchar email UK
+        char senha_hash
+        timestamp criado_em
+    }
+
+    CLIENTES {
+        int id PK
+        varchar nome
+        varchar cpf UK
+        varchar telefone
+        varchar email
+        timestamp criado_em
+    }
+
+    VEICULOS {
+        int id PK
+        int cliente_id FK
+        varchar placa UK
+        varchar marca
+        varchar modelo
+        int ano
+    }
+
+    SERVICOS {
+        int id PK
+        varchar nome UK
+        text descricao
+        numeric valor_base
+    }
+
+    ORDENS_SERVICO {
+        int id PK
+        int veiculo_id FK
+        int servico_id FK
+        date data_abertura
+        varchar status
+        numeric valor_total
+        text observacoes
+    }
+
+    CLIENTES ||--o{ VEICULOS : possui
+    VEICULOS ||--o{ ORDENS_SERVICO : recebe
+    SERVICOS ||--o{ ORDENS_SERVICO : compoe

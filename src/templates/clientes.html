@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Clientes - Oficina Manager{% endblock %}
+{% block heading %}Clientes{% endblock %}
+
+{% block content %}
+<section class="panel stack">
+    <div class="toolbar">
+        <form class="filters" method="get">
+            <label class="field">
+                Buscar
+                <input type="search" name="q" value="{{ q }}" placeholder="Nome, CPF ou telefone">
+            </label>
+            <label class="field">
+                Ordenar
+                <select name="order">
+                    <option value="nome" {% if order == 'nome' %}selected{% endif %}>Nome</option>
+                    <option value="cpf" {% if order == 'cpf' %}selected{% endif %}>CPF</option>
+                    <option value="recentes" {% if order == 'recentes' %}selected{% endif %}>Mais recentes</option>
+                </select>
+            </label>
+            <button type="submit">Filtrar</button>
+        </form>
+        <a class="button" href="{{ url_for('cliente_novo') }}">Novo cliente</a>
+    </div>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Telefone</th>
+                    <th>E-mail</th>
+                    <th>Acoes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cliente in clientes %}
+                    <tr>
+                        <td>{{ cliente.nome }}</td>
+                        <td>{{ cliente.cpf }}</td>
+                        <td>{{ cliente.telefone }}</td>
+                        <td>{{ cliente.email or '-' }}</td>
+                        <td>
+                            <div class="actions">
+                                <a class="button small secondary" href="{{ url_for('cliente_editar', cliente_id=cliente.id) }}">Editar</a>
+                                <form method="post" action="{{ url_for('cliente_excluir', cliente_id=cliente.id) }}" onsubmit="return confirm('Excluir este cliente? Veiculos e ordens relacionados tambem serao removidos.');">
+                                    <button class="small danger" type="submit">Excluir</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr><td colspan="5" class="empty">Nenhum cliente encontrado.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

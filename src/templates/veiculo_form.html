@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}{% if veiculo %}Editar veiculo{% else %}Novo veiculo{% endif %} - Oficina Manager{% endblock %}
+{% block heading %}{% if veiculo %}Editar veiculo{% else %}Novo veiculo{% endif %}{% endblock %}
+
+{% block content %}
+{% set item = veiculo or {} %}
+{% set selected_cliente = request.form.get('cliente_id', item.get('cliente_id', ''))|string %}
+<form class="panel stack" method="post">
+    <div class="form-grid">
+        <label class="field span-2">
+            Cliente
+            <select name="cliente_id" required>
+                <option value="">Selecione</option>
+                {% for cliente in clientes %}
+                    <option value="{{ cliente.id }}" {% if selected_cliente == cliente.id|string %}selected{% endif %}>{{ cliente.nome }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label class="field">
+            Placa
+            <input name="placa" maxlength="8" value="{{ request.form.get('placa', item.get('placa', '')) }}" required>
+        </label>
+        <label class="field">
+            Ano
+            <input type="number" name="ano" min="1980" max="2100" value="{{ request.form.get('ano', item.get('ano', '')) }}" required>
+        </label>
+        <label class="field">
+            Marca
+            <input name="marca" value="{{ request.form.get('marca', item.get('marca', '')) }}" required>
+        </label>
+        <label class="field">
+            Modelo
+            <input name="modelo" value="{{ request.form.get('modelo', item.get('modelo', '')) }}" required>
+        </label>
+    </div>
+    <div class="actions">
+        <button type="submit">Salvar</button>
+        <a class="button secondary" href="{{ url_for('veiculos') }}">Cancelar</a>
+    </div>
+</form>
+{% endblock %}

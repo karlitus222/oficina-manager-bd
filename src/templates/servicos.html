@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Servicos - Oficina Manager{% endblock %}
+{% block heading %}Servicos{% endblock %}
+
+{% block content %}
+<section class="panel stack">
+    <div class="toolbar">
+        <form class="filters" method="get">
+            <label class="field">
+                Buscar
+                <input type="search" name="q" value="{{ q }}" placeholder="Nome ou descricao">
+            </label>
+            <label class="field">
+                Ordenar
+                <select name="order">
+                    <option value="nome" {% if order == 'nome' %}selected{% endif %}>Nome</option>
+                    <option value="valor" {% if order == 'valor' %}selected{% endif %}>Maior valor</option>
+                </select>
+            </label>
+            <button type="submit">Filtrar</button>
+        </form>
+        <a class="button" href="{{ url_for('servico_novo') }}">Novo servico</a>
+    </div>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Descricao</th>
+                    <th>Valor base</th>
+                    <th>Acoes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for servico in servicos %}
+                    <tr>
+                        <td>{{ servico.nome }}</td>
+                        <td>{{ servico.descricao or '-' }}</td>
+                        <td>{{ servico.valor_base|money }}</td>
+                        <td>
+                            <div class="actions">
+                                <a class="button small secondary" href="{{ url_for('servico_editar', servico_id=servico.id) }}">Editar</a>
+                                <form method="post" action="{{ url_for('servico_excluir', servico_id=servico.id) }}" onsubmit="return confirm('Excluir este servico?');">
+                                    <button class="small danger" type="submit">Excluir</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr><td colspan="4" class="empty">Nenhum servico encontrado.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

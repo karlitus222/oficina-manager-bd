@@ -1,0 +1,9 @@
+.env
+.venv/
+.pgdata*/
+.flask_pid
+flask.log
+flask.err.log
+__pycache__/
+*.pyc
+.pytest_cache/

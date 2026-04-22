@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Oficina Manager{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <a class="brand" href="{{ url_for('dashboard') }}">
+                <img src="{{ url_for('static', filename='logo.svg') }}" width="44" height="44" alt="Oficina Manager">
+                <strong>Oficina Manager</strong>
+            </a>
+            <nav aria-label="Menu principal">
+                <a class="nav-link {% if current_path == '/' %}active{% endif %}" href="{{ url_for('dashboard') }}">Painel</a>
+                <a class="nav-link {% if current_path.startswith('/clientes') %}active{% endif %}" href="{{ url_for('clientes') }}">Clientes</a>
+                <a class="nav-link {% if current_path.startswith('/veiculos') %}active{% endif %}" href="{{ url_for('veiculos') }}">Veiculos</a>
+                <a class="nav-link {% if current_path.startswith('/servicos') %}active{% endif %}" href="{{ url_for('servicos') }}">Servicos</a>
+                <a class="nav-link {% if current_path.startswith('/ordens') %}active{% endif %}" href="{{ url_for('ordens') }}">Ordens</a>
+                <a class="nav-link {% if current_path.startswith('/relatorios') %}active{% endif %}" href="{{ url_for('relatorios') }}">Relatorios</a>
+            </nav>
+        </aside>
+        <main class="main">
+            <header class="topbar">
+                <div>
+                    <h1 class="page-title">{% block heading %}Painel{% endblock %}</h1>
+                    <div class="userline">Usuario: {{ session.get("usuario_nome", "Administrador") }}</div>
+                </div>
+                <a class="button secondary" href="{{ url_for('logout') }}">Sair</a>
+            </header>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>

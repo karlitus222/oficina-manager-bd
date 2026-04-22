@@ -1,0 +1,16 @@
+<svg width="1280" height="760" viewBox="0 0 1280 760" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Print da tela de login">
+  <rect width="1280" height="760" fill="#f4f7fb"/>
+  <rect x="430" y="132" width="420" height="496" rx="8" fill="#ffffff" stroke="#d7dee8"/>
+  <rect x="474" y="176" width="44" height="44" rx="8" fill="#1f2937"/>
+  <text x="532" y="205" font-family="Arial" font-size="20" font-weight="700" fill="#172033">Oficina Manager</text>
+  <text x="474" y="276" font-family="Arial" font-size="30" font-weight="700" fill="#172033">Acesso ao sistema</text>
+  <text x="474" y="312" font-family="Arial" font-size="16" fill="#657184">Gestao de clientes, veiculos, servicos e ordens.</text>
+  <text x="474" y="374" font-family="Arial" font-size="13" font-weight="700" fill="#657184">E-mail</text>
+  <rect x="474" y="386" width="332" height="44" rx="8" fill="#ffffff" stroke="#d7dee8"/>
+  <text x="490" y="414" font-family="Arial" font-size="15" fill="#172033">admin@oficina.local</text>
+  <text x="474" y="462" font-family="Arial" font-size="13" font-weight="700" fill="#657184">Senha</text>
+  <rect x="474" y="474" width="332" height="44" rx="8" fill="#ffffff" stroke="#d7dee8"/>
+  <text x="490" y="502" font-family="Arial" font-size="15" fill="#657184">********</text>
+  <rect x="474" y="548" width="332" height="44" rx="8" fill="#1f2937"/>
+  <text x="620" y="576" font-family="Arial" font-size="15" font-weight="700" fill="#ffffff">Entrar</text>
+</svg>

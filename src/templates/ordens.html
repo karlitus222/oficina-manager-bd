@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Ordens - Oficina Manager{% endblock %}
+{% block heading %}Ordens de servico{% endblock %}
+
+{% block content %}
+<section class="panel stack">
+    <div class="toolbar">
+        <form class="filters" method="get">
+            <label class="field">
+                Buscar
+                <input type="search" name="q" value="{{ q }}" placeholder="Cliente, placa ou servico">
+            </label>
+            <label class="field">
+                Status
+                <select name="status">
+                    <option value="">Todos</option>
+                    {% for item in statuses %}
+                        <option value="{{ item }}" {% if status == item %}selected{% endif %}>{{ item }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+            <label class="field">
+                Ordenar
+                <select name="order">
+                    <option value="recentes" {% if order == 'recentes' %}selected{% endif %}>Recentes</option>
+                    <option value="cliente" {% if order == 'cliente' %}selected{% endif %}>Cliente</option>
+                    <option value="status" {% if order == 'status' %}selected{% endif %}>Status</option>
+                    <option value="valor" {% if order == 'valor' %}selected{% endif %}>Valor</option>
+                </select>
+            </label>
+            <button type="submit">Filtrar</button>
+        </form>
+        <a class="button" href="{{ url_for('ordem_nova') }}">Nova ordem</a>
+    </div>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Cliente</th>
+                    <th>Veiculo</th>
+                    <th>Servico</th>
+                    <th>Status</th>
+                    <th>Valor</th>
+                    <th>Acoes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ordem in ordens %}
+                    <tr>
+                        <td>{{ ordem.data_abertura }}</td>
+                        <td>{{ ordem.cliente }}</td>
+                        <td>{{ ordem.placa }}<br><span class="muted">{{ ordem.marca }} {{ ordem.modelo }}</span></td>
+                        <td>{{ ordem.servico }}</td>
+                        <td><span class="status status-{{ ordem.status|replace(' ', '-') }}">{{ ordem.status }}</span></td>
+                        <td>{{ ordem.valor_total|money }}</td>
+                        <td>
+                            <div class="actions">
+                                <a class="button small secondary" href="{{ url_for('ordem_editar', ordem_id=ordem.id) }}">Editar</a>
+                                <form method="post" action="{{ url_for('ordem_excluir', ordem_id=ordem.id) }}" onsubmit="return confirm('Excluir esta ordem de servico?');">
+                                    <button class="small danger" type="submit">Excluir</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr><td colspan="7" class="empty">Nenhuma ordem encontrada.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

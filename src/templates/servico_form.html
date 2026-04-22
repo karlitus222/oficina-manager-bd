@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}{% if servico %}Editar servico{% else %}Novo servico{% endif %} - Oficina Manager{% endblock %}
+{% block heading %}{% if servico %}Editar servico{% else %}Novo servico{% endif %}{% endblock %}
+
+{% block content %}
+{% set item = servico or {} %}
+<form class="panel stack" method="post">
+    <div class="form-grid">
+        <label class="field">
+            Nome
+            <input name="nome" value="{{ request.form.get('nome', item.get('nome', '')) }}" required>
+        </label>
+        <label class="field">
+            Valor base
+            <input name="valor_base" inputmode="decimal" value="{{ request.form.get('valor_base', item.get('valor_base', '')) }}" required>
+        </label>
+        <label class="field span-2">
+            Descricao
+            <textarea name="descricao">{{ request.form.get('descricao', item.get('descricao', '') or '') }}</textarea>
+        </label>
+    </div>
+    <div class="actions">
+        <button type="submit">Salvar</button>
+        <a class="button secondary" href="{{ url_for('servicos') }}">Cancelar</a>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}{% if ordem %}Editar ordem{% else %}Nova ordem{% endif %} - Oficina Manager{% endblock %}
+{% block heading %}{% if ordem %}Editar ordem{% else %}Nova ordem{% endif %}{% endblock %}
+
+{% block content %}
+{% set item = ordem or {} %}
+{% set selected_veiculo = request.form.get('veiculo_id', item.get('veiculo_id', ''))|string %}
+{% set selected_servico = request.form.get('servico_id', item.get('servico_id', ''))|string %}
+{% set selected_status = request.form.get('status', item.get('status', 'Aberta')) %}
+<form class="panel stack" method="post">
+    <div class="form-grid">
+        <label class="field span-2">
+            Veiculo
+            <select name="veiculo_id" required>
+                <option value="">Selecione</option>
+                {% for veiculo in veiculos %}
+                    <option value="{{ veiculo.id }}" {% if selected_veiculo == veiculo.id|string %}selected{% endif %}>
+                        {{ veiculo.cliente }} - {{ veiculo.placa }} - {{ veiculo.marca }} {{ veiculo.modelo }}
+                    </option>
+                {% endfor %}
+            </select>
+        </label>
+        <label class="field">
+            Servico
+            <select name="servico_id" required>
+                <option value="">Selecione</option>
+                {% for servico in servicos %}
+                    <option value="{{ servico.id }}" {% if selected_servico == servico.id|string %}selected{% endif %}>
+                        {{ servico.nome }} ({{ servico.valor_base|money }})
+                    </option>
+                {% endfor %}
+            </select>
+        </label>
+        <label class="field">
+            Data
+            <input type="date" name="data_abertura" value="{{ request.form.get('data_abertura', item.get('data_abertura', '')) }}" required>
+        </label>
+        <label class="field">
+            Status
+            <select name="status" required>
+                {% for status in statuses %}
+                    <option value="{{ status }}" {% if selected_status == status %}selected{% endif %}>{{ status }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label class="field">
+            Valor total
+            <input name="valor_total" inputmode="decimal" value="{{ request.form.get('valor_total', item.get('valor_total', '')) }}" required>
+        </label>
+        <label class="field span-2">
+            Observacoes
+            <textarea name="observacoes">{{ request.form.get('observacoes', item.get('observacoes', '') or '') }}</textarea>
+        </label>
+    </div>
+    <div class="actions">
+        <button type="submit">Salvar</button>
+        <a class="button secondary" href="{{ url_for('ordens') }}">Cancelar</a>
+    </div>
+</form>
+{% endblock %}

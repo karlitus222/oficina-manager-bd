@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Painel - Oficina Manager{% endblock %}
+{% block heading %}Painel{% endblock %}
+
+{% block content %}
+<div class="stack">
+    <section class="stat-grid">
+        <div class="stat">
+            <span class="muted">Clientes</span>
+            <span class="stat-value">{{ stats.clientes }}</span>
+        </div>
+        <div class="stat">
+            <span class="muted">Veiculos</span>
+            <span class="stat-value">{{ stats.veiculos }}</span>
+        </div>
+        <div class="stat">
+            <span class="muted">Servicos</span>
+            <span class="stat-value">{{ stats.servicos }}</span>
+        </div>
+        <div class="stat">
+            <span class="muted">Ordens</span>
+            <span class="stat-value">{{ stats.ordens }}</span>
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="section-heading">
+            <h2>Ordens recentes</h2>
+            <a class="button small" href="{{ url_for('ordem_nova') }}">Nova ordem</a>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Cliente</th>
+                        <th>Veiculo</th>
+                        <th>Servico</th>
+                        <th>Status</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ordem in recentes %}
+                        <tr>
+                            <td>{{ ordem.data_abertura }}</td>
+                            <td>{{ ordem.cliente }}</td>
+                            <td>{{ ordem.placa }}</td>
+                            <td>{{ ordem.servico }}</td>
+                            <td><span class="status status-{{ ordem.status|replace(' ', '-') }}">{{ ordem.status }}</span></td>
+                            <td>{{ ordem.valor_total|money }}</td>
+                        </tr>
+                    {% else %}
+                        <tr><td colspan="6" class="empty">Nenhuma ordem cadastrada.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+{% endblock %}

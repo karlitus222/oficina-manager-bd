@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}{% if cliente %}Editar cliente{% else %}Novo cliente{% endif %} - Oficina Manager{% endblock %}
+{% block heading %}{% if cliente %}Editar cliente{% else %}Novo cliente{% endif %}{% endblock %}
+
+{% block content %}
+{% set item = cliente or {} %}
+<form class="panel stack" method="post">
+    <div class="form-grid">
+        <label class="field span-2">
+            Nome
+            <input name="nome" value="{{ request.form.get('nome', item.get('nome', '')) }}" required>
+        </label>
+        <label class="field">
+            CPF
+            <input name="cpf" value="{{ request.form.get('cpf', item.get('cpf', '')) }}" required>
+        </label>
+        <label class="field">
+            Telefone
+            <input name="telefone" value="{{ request.form.get('telefone', item.get('telefone', '')) }}" required>
+        </label>
+        <label class="field span-2">
+            E-mail
+            <input type="email" name="email" value="{{ request.form.get('email', item.get('email', '') or '') }}">
+        </label>
+    </div>
+    <div class="actions">
+        <button type="submit">Salvar</button>
+        <a class="button secondary" href="{{ url_for('clientes') }}">Cancelar</a>
+    </div>
+</form>
+{% endblock %}

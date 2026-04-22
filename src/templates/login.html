@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login - Oficina Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="login-page">
+    <main class="login-shell">
+        <div class="login-brand">
+            <img src="{{ url_for('static', filename='logo.svg') }}" width="44" height="44" alt="Oficina Manager">
+            <strong>Oficina Manager</strong>
+        </div>
+        <h1 class="login-title">Acesso ao sistema</h1>
+        <p class="login-subtitle">Gestao de clientes, veiculos, servicos e ordens.</p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form class="login-panel stack" method="post">
+            <label class="field">
+                E-mail
+                <input type="email" name="email" value="{{ request.form.get('email', 'admin@oficina.local') }}" required>
+            </label>
+            <label class="field">
+                Senha
+                <input type="password" name="senha" value="" required>
+            </label>
+            <button type="submit">Entrar</button>
+        </form>
+    </main>
+</body>
+</html>
