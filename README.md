@@ -1,6 +1,7 @@
 # Oficina Manager
 
 Aluno: **Carlos Gabriel Raposo Landim**
+Instituicao: **UNIFSA**
 
 Sistema web para gestao de uma oficina mecanica. A aplicacao permite controlar clientes, veiculos, servicos e ordens de servico, com login, CRUD completo, filtros, ordenacao e relatorios com consultas usando `INNER JOIN` e `LEFT JOIN`.
 
