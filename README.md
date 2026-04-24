@@ -91,10 +91,7 @@ Senha: admin123
 ## Funcionalidades
 
 - Login inicial obrigatorio.
-- Cadastro, listagem, atualizacao e exclusao de clientes.
-- Cadastro, listagem, atualizacao e exclusao de veiculos.
-- Cadastro, listagem, atualizacao e exclusao de servicos.
-- Cadastro, listagem, atualizacao e exclusao de ordens de servico.
+- CRUD completo nos modulos de clientes, veiculos, servicos e ordens de servico.
 - Filtros por texto, status e ordenacao.
 - Relatorio com `INNER JOIN` entre ordens, veiculos, clientes e servicos.
 - Relatorio com `LEFT JOIN` para listar todos os clientes, inclusive os que ainda nao possuem ordens.
