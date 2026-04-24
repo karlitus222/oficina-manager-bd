@@ -1,6 +1,6 @@
 # Oficina Manager
 
-Aluno: **[preencher nome completo]**
+Aluno: **Carlos Gabriel Raposo Landim**
 
 Sistema web para gestao de uma oficina mecanica. A aplicacao permite controlar clientes, veiculos, servicos e ordens de servico, com login, CRUD completo, filtros, ordenacao e relatorios com consultas usando `INNER JOIN` e `LEFT JOIN`.
 
