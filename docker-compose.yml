@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres:16
+    container_name: oficina_manager_db
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  web:
+    build: .
+    container_name: oficina_manager_web
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/oficina_db
+      SECRET_KEY: dev-secret-change-me
+      FLASK_DEBUG: "0"
+      FLASK_USE_RELOADER: "0"
+      PORT: "5000"
+    ports:
+      - "5000:5000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

@@ -1,0 +1,11 @@
+.git
+.venv
+.pgdata_dev
+__pycache__
+*.pyc
+ops/logs
+video
+tools
+flask.log
+flask.err.log
+.flask_pid

@@ -42,6 +42,36 @@ O DER esta disponivel em:
 
 ## Como executar
 
+### Opcao mais facil: Docker
+
+Se a pessoa tiver Docker Desktop instalado, ela pode subir tudo com um comando:
+
+```powershell
+docker compose up --build
+```
+
+Depois e so abrir:
+
+```text
+http://127.0.0.1:5000
+```
+
+Para desligar:
+
+```powershell
+docker compose down
+```
+
+Esse modo ja sobe:
+
+- PostgreSQL
+- aplicacao Flask
+- criacao do banco
+- criacao das tabelas
+- carga inicial dos dados
+
+### Opcao manual: Python + PostgreSQL local
+
 1. Crie e ative um ambiente virtual:
 
 ```powershell
