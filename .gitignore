@@ -4,6 +4,8 @@
 .flask_pid
 flask.log
 flask.err.log
+ops/logs/
+tools/
 __pycache__/
 *.pyc
 .pytest_cache/

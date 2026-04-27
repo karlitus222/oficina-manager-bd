@@ -81,6 +81,8 @@ python src/app.py
 http://127.0.0.1:5000
 ```
 
+Observacao: esse endereco e **local**, ou seja, funciona na maquina em que a aplicacao estiver rodando. O GitHub nao hospeda automaticamente uma aplicacao Flask com PostgreSQL.
+
 ## Credenciais de teste
 
 ```text
@@ -117,8 +119,4 @@ Senha: admin123
 
 ## Link do video
 
-Cole aqui o link do video demonstrativo com no maximo 10 minutos:
-
-```text
-[INSERIR LINK DO VIDEO]
-```
+[Video demonstrativo](video/video_editado_final_sem_erros.mp4)
