@@ -150,3 +150,13 @@ Senha: admin123
 ## Link do video
 
 [Video demonstrativo](video/video_editado_final_sem_erros.mp4)
+
+Para assistir ao video no proprio repositorio:
+
+1. Abra a pasta `video`
+2. Clique em `video_editado_final_sem_erros.mp4`
+3. O GitHub exibira a pagina do arquivo, onde o video pode ser aberto ou baixado
+
+Link direto para download:
+
+[Baixar video demonstrativo](https://raw.githubusercontent.com/karlitus222/oficina-manager-bd/main/video/video_editado_final_sem_erros.mp4)
